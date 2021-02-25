@@ -2,22 +2,28 @@
 
 <!-- First, the website header -->
 <div class="container-fluid bg-darkred" style="padding-top: 6px; padding-bottom: 6px;">
-  <div class="aidans-header-row row justify-content-center">
-    <a href="/"><img src="{% static 'images/college-emblem.svg'%}" class="d-inline-block" style="width: 100px;" /><span class="h5 navbar-brand-text">St Aidan's JCR</span></a>
-  </div>
+<div class="aidans-header-row row justify-content-center" style="border-style=solid;">
+            <a id="aidans-header-link" href="/" style="border-style: solid; border-color: blue;">
+              <img id="aidans-img" src="{% static 'images/college-emblem.svg'%}"\>
+              <p id="aidans-top-text" class="h5 navbar-brand-text">St Aidan's</p>
+              <p id="aidans-bottom-text" class="h5 navbar-brand-text">JCR</p>
+            </a>
+          </div>
 </div>
 
 <!-- Then the navbar itself -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin: 0 auto; text-align: center;">
-  <div class="navbar-center-block">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#aidans-navbar-collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="aidans-navbar-collapse">
-        <ul class="navbar-nav mr-auto">
+    <div class="container-fluid px-0 mx-0" style="border-style: solid;">
+      <div class="collapse navbar-collapse px-0 mx-0" id="aidans-navbar-collapse">
+        <div class="nav-test">
+        {% widthratio menu_items|length 2 1 as midpoint %}
+        <ul class="navbar-nav mr-auto aidans-nav-list">
           {% for item in menu_items %}
+          {% if forloop.counter0 < midpoint|add:"0" %}
           <li class="nav-item {{ item.active_class }} {% if item.has_children_in_menu %}dropdown{% endif %}">
             <a class="nav-link" href="{{item.href}}">{{ item.text }}</a>
           {% if item.has_children_in_menu %}
@@ -26,17 +32,29 @@
             </div>
           {% endif %}
           </li>
+          {% endif %}
           {% endfor %}
         </ul>
-        <form class="form-inline" action="{% url 'search' %}">
-          <div class="form-group">
-            <input type="search" class="form-control" name="query" placeholder="Search" aria-label="Search">
-          </div>
-          <button type="submit" class="btn btn-secondary">Submit</button>
-        </form>
-      </div>
+
+        <div class="aidans-navbar-gap">test</div>
+
+      <ul class="navbar-nav ml-auto aidans-nav-list">
+          {% for item in menu_items %}
+          {% if forloop.counter0 >= midpoint|add:"0" %}
+          <li class="nav-item {{ item.active_class }} {% if item.has_children_in_menu %}dropdown{% endif %}">
+            <a class="nav-link" href="{{item.href}}">{{ item.text }}</a>
+          {% if item.has_children_in_menu %}
+            <div class="dropdown-menu">
+              {% sub_menu item %}
+            </div>
+          {% endif %}
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+        </div>
     </div>
-  </div>
+    </div>
 </nav>
 
 
