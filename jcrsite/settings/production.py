@@ -44,7 +44,7 @@ if db_from_env:
     SECURE_SSL_REDIRECT = True
 
     # Static file compression and caching
-    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     # Load in the JCR DATABASE
     '''DATABASES['jcrdb'] = {
