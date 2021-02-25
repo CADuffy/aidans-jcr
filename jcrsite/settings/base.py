@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'jcrsite',
     'home',
     'shop',
-    #'welfarechat',
+    'welfarechat',
     'search',
     'forms',
     'gallery',
@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
-    #'channels',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -114,7 +114,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'jcrsite.wsgi.application'
 
 # Routing for channel sockets
-#ASGI_APPLICATION = "jcrsite.routing.application"
+ASGI_APPLICATION = "jcrsite.routing.application"
 
 CHANNEL_LAYERS = {
     'default': {
